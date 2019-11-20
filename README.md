@@ -1,2 +1,2 @@
 # CodeWars_AkkaRS
-This is Patxi branch
+Last merge from branch "Patxi"
