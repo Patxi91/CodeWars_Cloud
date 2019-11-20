@@ -1,4 +1,4 @@
-# CodeWars_AkkaRS
+# CodeWars_AkkaRS :+1:
 
 # How to name Files:
 # [int]kyu-[NameKata]-[NameBranch].[ext]
