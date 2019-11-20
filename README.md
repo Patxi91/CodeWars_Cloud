@@ -2,5 +2,5 @@
 
 # How to name Files:
 # [int]kyu-[NameKata]-[NameBranch].[ext]
-  
-# - [x] Last merge from branch "Patxi"
+
+- [x] Last merge from branch "Patxi"
