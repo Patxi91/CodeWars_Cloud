@@ -9,11 +9,8 @@ def torrent(files):
     max = time_s[len(time_s)-1]
     ordered = []
     count = 0
-    print(len(files), files)
-    print(time_s)
     for x in range(len(files)):
           sub_list = []
-          print(count)
           if count > 1: #Jump as many repeated time_s
               count -= 1
               if count == 1:
