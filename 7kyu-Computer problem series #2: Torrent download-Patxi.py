@@ -1,4 +1,5 @@
 def torrent(files):
+    print(len(files), files)
     max = 0
     time = []
     for x in range(len(files)):
@@ -22,7 +23,10 @@ def torrent(files):
               sub_list.sort()
               ordered.extend(sub_list)
           elif ( x == len(files) and time_s[x] != time_s[x-1]): #Last time_s element
-              count -= 1
+              for y in range(len(files)):
+                  temp = files[y]
+                  if time_s[x] == int((temp['size_GB']*1000*8)/temp['speed_Mbps']):
+                      ordered.append(temp['name'])
           else : # Regular not repeated times
               for y in range(len(files)):
                   temp = files[y]
