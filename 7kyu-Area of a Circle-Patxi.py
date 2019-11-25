@@ -1,6 +1,6 @@
 from math import pi
 
-def circleArea(r):
-    if not isinstance(r, (int, float)) or r <= 0:
+def circleArea(radius):
+    if not isinstance(radius, (int, float)) or radius <= 0:
         return False
-    return round(pi * (r ** 2), 2)
+    return round(pi * (radius ** 2), 2)
