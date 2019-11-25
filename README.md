@@ -3,4 +3,4 @@
 # Files name commit format:
 # [int]kyu-[NameKata]-[NameBranch].[ext]
 
-- [x] Last merge from branch "PatxiO"
+- [x] Last merge from branch "Patxi"
