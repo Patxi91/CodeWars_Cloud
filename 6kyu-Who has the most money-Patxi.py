@@ -16,14 +16,3 @@ def most_money(students):
         return 'all'
     else:
         return students[index_max].name
-
-
-
-
-
-
-
-
-
-
-
