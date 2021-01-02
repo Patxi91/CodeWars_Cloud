@@ -50,6 +50,14 @@ def how_many_times(a, b):
     return count
 
 
+def how_many_times2(a, b):
+    if a > b: a, b = b, a
+    if a <= 0: return -1
+    if a == b: return a
+    n = b - a
+    return sum(1 + (x < n/x <= a) for x in range(1, min(a, int(n**0.5))+1) if not n%x)
+
+
 class Test:
 
     def test(self, function):
@@ -67,7 +75,3 @@ class Test:
 
 t = Test()
 t.test(how_many_times)
-
-
-
-
