@@ -1,16 +1,12 @@
 
 def is_prime(n):
 
-    """
-    Assumes that n is a positive natural number
-    """
-    # We know 1 is not a prime number
+    # 1 is not a prime number
     if n == 1:
         return False
 
-    # We store the number of factors in this variable
-    factors = 0
-    # This will loop from 1 to n
+    factors = 0  # Number of factors in this variable
+
     for i in range(1, n+1):
         # Check if `i` divides `n`, if yes then we increment the factors
         if n % i == 0:
@@ -21,17 +17,13 @@ def is_prime(n):
     return False
 
 
+def backwards_prime(start, stop):
+    sol = []
+    for x in range(start, stop+1):
+        if is_prime(x)and x != int(str(x)[::-1]) and is_prime(int(str(x)[::-1])):
+            sol.append(x)
+    return sol
 
 
 # Test
-n = 10
-for x in range(1, n+1):
-    print('%d: %s' % (x, is_prime(x)))
-
-
-
-
-
-
-
-
+brp = backwards_prime(2, 100)  # => [13, 17, 31, 37, 71, 73, 79, 97]
