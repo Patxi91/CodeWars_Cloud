@@ -7,4 +7,3 @@ def two_sum(arr, target):
             res.sort()
             return res
         it += 1
-
