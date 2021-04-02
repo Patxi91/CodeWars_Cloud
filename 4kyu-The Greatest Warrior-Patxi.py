@@ -4,7 +4,7 @@ class Warrior:
     ranks = ["Pushover", "Novice", "Fighter", "Warrior", "Veteran", "Sage", "Elite", "Conqueror", "Champion", "Master", "Greatest"]
 
     def __init__(self):
-        self.level = 1 # Max = 100
+        self.level = 1  # Max = 100
         self.rank = self.ranks[0]
         self.experience = 100
         self.achievements = []
