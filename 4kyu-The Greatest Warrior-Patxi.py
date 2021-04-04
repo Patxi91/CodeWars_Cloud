@@ -52,4 +52,3 @@ class Warrior:
             return self.achievements[-1]
         else:
             return "Not strong enough"
-
