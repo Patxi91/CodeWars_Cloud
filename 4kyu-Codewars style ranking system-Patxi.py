@@ -42,7 +42,6 @@ class User:
                         else:
                             self.progress = 0
             else:
-                print(activity_rank)
                 raise Exception("Wrong activity level.")
 
     def progress_score(self, earned_progress):
