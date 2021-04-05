@@ -49,4 +49,3 @@ class User:
         if self.rank != self.ranks[-1]:
             self.progress += earned_progress
             self.inc_progress(self.ranks[self.ranks.index(self.rank) - 2] if self.rank > -7 else -10)  # This activity rank will give 0 earned progress
-
