@@ -17,6 +17,10 @@ def get_generations(cells, generations):
     cells_np = np.array(cells)
 
 
+
+
+
+
     pass
 
 
