@@ -15,6 +15,18 @@ def get_generations(cells, generations):
     """
 
     cells_np = np.array(cells)
+    add_column = [0] * np.size(cells_np, axis=0) # Column to be added
+    add_row = [0] * np.size(cells_np, axis=1)  # Row to be added
+
+
+
+
+
+
+
+    # Remove zeros
+    a2 = np.delete(a, np.argwhere(np.all(a[..., :] == 0, axis=0)), axis=1)
+    a2 = np.delete(a2, np.argwhere(np.all(a[:, ...] == 0, axis=1)), axis=0)
 
     pass
 
