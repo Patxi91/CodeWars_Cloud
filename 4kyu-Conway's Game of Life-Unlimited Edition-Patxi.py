@@ -15,20 +15,33 @@ def get_generations(cells, generations):
     """
 
     cells_np = np.array(cells)
-    add_column = [0] * np.size(cells_np, axis=0) # Column to be added
+
+    add_column = [0] * np.size(cells_np, axis=0)  # Column to be added
+    cells_np = np.hstack((np.atleast_2d(add_column).T, cells_np))  # Add left column
+    cells_np = np.hstack((cells_np, np.atleast_2d(add_column).T))  # Add right column
+
     add_row = [0] * np.size(cells_np, axis=1)  # Row to be added
+    cells_np = np.vstack((add_row, cells_np))  # Upper row
+    cells_np = np.vstack((cells_np, add_row))  # Lower row
 
+    for x in range(cells_np.shape[0]):
+        for y in range(cells_np.shape[1]):
+            num_neighbours = np.sum(cells_np[x - 1:x + 2, y - 1:y + 2]) - cells_np[x, y]  # Sum of 8 surrounding squares
 
-
-
-
-
+            # If the cell is alive
+            if cells_np[x, y] == 1:
+                if num_neighbours < 2 or num_neighbours > 3:
+                    cells_np[x, y] = 0  # Dies
+            # Otherwise, the cell is dead
+            elif cells_np[x, y] == 0:
+                if num_neighbours == 3:
+                    cells_np[x, y] = 1  # Becomes a live cell
 
     # Remove zeros
-    a2 = np.delete(a, np.argwhere(np.all(a[..., :] == 0, axis=0)), axis=1)
-    a2 = np.delete(a2, np.argwhere(np.all(a[:, ...] == 0, axis=1)), axis=0)
+    cells_np = np.delete(cells_np, np.argwhere(np.all(cells_np[..., :] == 0, axis=0)), axis=1)
+    cells_np = np.delete(cells_np, np.argwhere(np.all(cells_np[:, ...] == 0, axis=1)), axis=0)
 
-    pass
+    return cells_np
 
 
 start = [[1, 0, 0],
