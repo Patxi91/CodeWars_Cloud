@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def get_generations(cells, generations):
+def get_generation(cells, generations):
     """
     :param cells: Start generation
     :param generations: Number of evolutions
