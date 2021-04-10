@@ -27,15 +27,10 @@ def get_generation(cells, generations):
     for x in range(cells_np.shape[0]):
         for y in range(cells_np.shape[1]):
             num_neighbours = np.sum(cells_np[x - 1:x + 2, y - 1:y + 2]) - cells_np[x, y]  # Sum of 8 surrounding squares
-
-            # If the cell is alive
-            if cells_np[x, y] == 1:
-                if num_neighbours < 2 or num_neighbours > 3:
-                    cells_np[x, y] = 0  # Dies
-            # Otherwise, the cell is dead
-            elif cells_np[x, y] == 0:
-                if num_neighbours == 3:
-                    cells_np[x, y] = 1  # Becomes a live cell
+            if cells_np[x, y] == 1 and (num_neighbours < 2 or num_neighbours > 3):  # If the cell is alive
+                cells_np[x, y] = 0  # Dies
+            elif cells_np[x, y] == 0 and num_neighbours == 3:  # Otherwise, the cell is dead
+                cells_np[x, y] = 1  # Becomes a live cell
 
     # Remove zeros
     cells_np = np.delete(cells_np, np.argwhere(np.all(cells_np[..., :] == 0, axis=0)), axis=1)
@@ -51,6 +46,7 @@ end = [[0, 1, 0],
        [0, 0, 1],
        [1, 1, 1]]
 
+my_end = get_generation(start, 1)
 
 
 
