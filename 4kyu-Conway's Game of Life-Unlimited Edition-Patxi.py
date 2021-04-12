@@ -59,3 +59,4 @@ def get_generation(cells, generations):
             cells_np = cells_np_sol
 
         return cells_np_sol.tolist()
+
