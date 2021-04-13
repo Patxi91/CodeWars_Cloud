@@ -16,7 +16,7 @@ def get_generation(cells, generations):
     """
     :param cells: Start generation
     :param generations: Number of evolutions
-    :return:
+    :return: cells_np_sol.tolist(): Generation state after evolutions
 
     Conway's Game of Life boundary conditions:
     1.  Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
