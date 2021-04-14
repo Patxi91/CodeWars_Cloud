@@ -2,12 +2,12 @@ import numpy as np
 
 
 def trim_zeros_2D(array, axis=1):
-    mask = ~(array==0).all(axis=axis)
+    mask = ~(array == 0).all(axis=axis)
     inv_mask = mask[::-1]
     start_idx = np.argmax(mask == True)
     end_idx = len(inv_mask) - np.argmax(inv_mask == True)
     if axis:
-        return array[start_idx:end_idx,:]
+        return array[start_idx:end_idx, :]
     else:
         return array[:, start_idx:end_idx]
 
