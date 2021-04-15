@@ -5,7 +5,6 @@ def replace_last(string, find, replace):
 
 
 def format_duration(seconds):
-    # your code here
 
     TIME_DURATION_UNITS = (
         ('year', 60 * 60 * 24 * 365),
