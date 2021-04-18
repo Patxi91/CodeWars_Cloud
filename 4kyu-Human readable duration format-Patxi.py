@@ -23,3 +23,4 @@ def format_duration(seconds):
     result = ', '.join(parts)
     result = replace_last(result, ",", " and")
     return result
+
