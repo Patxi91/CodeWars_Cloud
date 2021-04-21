@@ -84,3 +84,7 @@ expression = "1^2^3"
 result = infix_to_postfix(expression).replace(" ", "")
 print(result)
 
+
+
+
+
