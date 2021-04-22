@@ -60,7 +60,7 @@ def precedence(char: str) -> int:
 def infix_to_postfix(expression_str: str) -> str:
     if not balanced_parentheses(expression_str):
         raise ValueError("Mismatched parentheses")
-    stack = Stack()
+    stack = Stack(len(expression_str))
     postfix = []
     for char in expression_str:
         if char.isalpha() or char.isdigit():
@@ -81,7 +81,4 @@ def infix_to_postfix(expression_str: str) -> str:
 
 
 def to_postfix(expression):
-    print(expression)
-    result = infix_to_postfix(expression).replace(" ", "")
-    print(result)
-    return result
+    return infix_to_postfix(expression).replace(" ", "")
