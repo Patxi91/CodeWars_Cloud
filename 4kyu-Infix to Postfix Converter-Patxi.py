@@ -1,7 +1,7 @@
 
 class Stack:
 
-    def __init__(self, limit: int = 10):
+    def __init__(self, limit: int = 100):
         self.stack = []
         self.limit = limit
 
@@ -80,11 +80,8 @@ def infix_to_postfix(expression_str: str) -> str:
     return " ".join(postfix)
 
 
-expression = "1^2^3"
-result = infix_to_postfix(expression).replace(" ", "")
-print(result)
-
-
-
-
-
+def to_postfix(expression):
+    print(expression)
+    result = infix_to_postfix(expression).replace(" ", "")
+    print(result)
+    return result
