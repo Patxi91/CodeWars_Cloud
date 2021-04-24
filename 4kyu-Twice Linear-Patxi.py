@@ -20,3 +20,6 @@ Note:
 Focus attention on efficiency
 '''
 
+
+def dbl_linear(n):
+	# your code
