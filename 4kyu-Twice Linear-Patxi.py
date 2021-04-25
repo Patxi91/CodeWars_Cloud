@@ -19,3 +19,4 @@ def dbl_linear(n):
             y += 1
 
     return list[n]
+
