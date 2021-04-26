@@ -81,3 +81,5 @@ my_sol = get_pins(observed)
 
 
 
+
+
