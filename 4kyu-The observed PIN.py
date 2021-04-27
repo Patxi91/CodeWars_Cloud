@@ -1,3 +1,4 @@
+# from itertools import product
 def product(*args, repeat=1):
     """
     product('ABCD', 'xy') --> Ax Ay Bx By Cx Cy Dx Dy
