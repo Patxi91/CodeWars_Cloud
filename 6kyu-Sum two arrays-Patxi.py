@@ -1,4 +1,4 @@
-def sum_arrays(array1,array2):
+def sum_arrays(array1, array2):
     num1 = ''
     num2 = ''
     sol = []
