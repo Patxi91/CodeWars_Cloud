@@ -1,4 +1,3 @@
-from nose.tools import assert_equal
 import math
 
 
@@ -56,22 +55,3 @@ def how_many_times2(a, b):
     if a == b: return a
     n = b - a
     return sum(1 + (x < n/x <= a) for x in range(1, min(a, int(n**0.5))+1) if not n%x)
-
-
-class Test:
-
-    def test(self, function):
-        assert_equal(function(3, 5), 2)
-        assert_equal(function(10, 1), 1)
-        assert_equal(function(7, 7), 7)
-        assert_equal(function(16, 32), 5)
-        assert_equal(function(42, 21), 4)
-        assert_equal(function(54, 17), 1)
-        assert_equal(function(150080, 150032), 10)
-        assert_equal(function(654093782, 937618402), 24)
-        assert_equal(function(1000000000, 649735194), 16)
-        print('ALL TEST CASES PASSED')
-
-
-t = Test()
-t.test(how_many_times)
