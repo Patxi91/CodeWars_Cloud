@@ -16,3 +16,4 @@ def longest_consec(strarr, k):
             s = 0
 
     return sub_strarr
+
