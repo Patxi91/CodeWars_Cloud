@@ -12,3 +12,4 @@ def get_consective_items(items, key):
             s = 0
 
     return max(s, m)
+
