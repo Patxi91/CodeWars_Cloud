@@ -71,7 +71,7 @@ def checkPath(matrix, i, j, visited):
 
         # If path is found in up
         # direction return true
-        if (up):
+        if up:
             return True
 
         # Traverse left
