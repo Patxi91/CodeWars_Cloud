@@ -130,3 +130,9 @@ def path_finder(maze):
     return isPath(matrix_np)
 
 
+
+
+
+
+
+
