@@ -1,6 +1,4 @@
-# CodeWars_AkkaRS :+1:
+# CodeWars_Cloud :+1:
 
 # Files name commit format:
 # [int]kyu-[NameKata]-[NameBranch].[ext]
-
-- [x] Last merge from branch "Patxi"
