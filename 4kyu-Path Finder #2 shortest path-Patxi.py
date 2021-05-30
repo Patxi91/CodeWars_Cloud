@@ -128,3 +128,7 @@ def path_finder(maze):
 
     # calling isPath method
     return isPath(matrix_np)
+
+
+
+
