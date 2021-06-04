@@ -3,6 +3,9 @@ import sys
 
 sys.setrecursionlimit(10000)
 
+# Globals
+global g_counter
+g_counter = 10e6
 
 def isPath(matrix):
     """
@@ -23,6 +26,8 @@ def isPath(matrix):
     flag = False
 
     for i in range(n):
+        if flag:
+            break
         for j in range(n):
 
             # If matrix[i][j] is source
@@ -31,13 +36,12 @@ def isPath(matrix):
 
                 # Starting from i, j and
                 # then finding the path
-                path = checkPath(matrix, i, j, visited, 0)
-                if path:
+                if checkPath(matrix, i, j, visited):
                     # If path exists
                     flag = True
                     break
     if flag:
-        return path
+        return True
     else:
         return False
 
@@ -54,30 +58,32 @@ def isSafe(i, j, matrix):
 # cell with value 1) to a
 # destination(a cell with
 # value 2)
-def checkPath(matrix, i, j, visited, count=0):
+def checkPath(matrix, i, j, visited, i_counter=-1):
+    global g_counter
     # Checking the boundaries, walls and
     # whether the cell is unvisited
     if isSafe(i, j, matrix) and matrix[i][j] != 0 and not visited[i][j]:
 
-        # Make the cell visited and add to the counter
+        # Make the cell visited
         visited[i][j] = True
-        count += 1
+        i_counter += 1
 
-        # If the cell is the required
-        # destination then return true
+        # If the cell is the required destination then return true
         if matrix[i][j] == 2:
-            return count
+            # Check if Path is shortest
+            if i_counter < g_counter:
+                g_counter = i_counter
+            return True
 
         # traverse up
-        up = checkPath(matrix, i - 1, j, visited, count)
+        up = checkPath(matrix, i - 1, j, visited, i_counter)
 
-        # If path is found in up
-        # direction return true
+        # If path is found in up direction return true
         if up:
             return True
 
         # Traverse left
-        left = checkPath(matrix, i, j - 1, visited, count)
+        left = checkPath(matrix, i, j - 1, visited, i_counter)
 
         # If path is found in left
         # direction return true
@@ -85,7 +91,7 @@ def checkPath(matrix, i, j, visited, count=0):
             return True
 
         # Traverse down
-        down = checkPath(matrix, i + 1, j, visited, count)
+        down = checkPath(matrix, i + 1, j, visited, i_counter)
 
         # If path is found in down
         # direction return true
@@ -93,7 +99,7 @@ def checkPath(matrix, i, j, visited, count=0):
             return True
 
         # Traverse right
-        right = checkPath(matrix, i, j + 1, visited)
+        right = checkPath(matrix, i, j + 1, visited, i_counter)
 
         # If path is found in right
         # direction return true
@@ -113,6 +119,7 @@ def str2mat(s):
 
 
 def path_finder(maze):
+
     if len(maze) <= 2:
         return True
 
@@ -127,8 +134,23 @@ def path_finder(maze):
     matrix_np[n - 1][m - 1] = 2  # Destination
 
     # calling isPath method
-    return isPath(matrix_np)
+    if isPath(matrix_np):
+        return g_counter
+    else:
+        return False
 
+
+
+# Driver
+
+m = "\n".join([
+  "......",
+  "......",
+  "......",
+  "......",
+  "......",
+  "......"])
+r = path_finder(m)
 
 
 
