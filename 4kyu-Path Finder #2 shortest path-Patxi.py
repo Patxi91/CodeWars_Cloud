@@ -63,6 +63,7 @@ def checkPath(matrix, i, j, visited, i_counter=-1):
     # Checking the boundaries, walls and
     # whether the cell is unvisited
     if isSafe(i, j, matrix) and matrix[i][j] != 0 and not visited[i][j]:
+        print(i,j,i_counter,g_counter)
 
         # Make the cell visited
         visited[i][j] = True
