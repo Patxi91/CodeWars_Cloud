@@ -1,5 +1,6 @@
 import numpy as np
 import sys
+import collections
 
 sys.setrecursionlimit(10000)
 
@@ -8,12 +9,6 @@ global g_counter
 g_counter = 10e6
 
 def isPath(matrix):
-    """
-    A value of cell 1 means Source.
-    A value of cell 2 means Destination.
-    A value of cell 3 means Blank cell.
-    A value of cell 0 means Blank Wall.
-    """
 
     # Defining visited array to keep
     # track of already visited indexes
@@ -119,7 +114,58 @@ def str2mat(s):
     return mat
 
 
-def path_finder(maze):
+def bfs_1(grid, start):
+    global wall, clear, goal
+    global width, height
+    queue = collections.deque([[start]])
+    seen = set([start])
+    while queue:
+        path = queue.popleft()
+        x, y = path[-1]
+        if grid[y][x] == goal:
+            return path
+        for x2, y2 in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
+            if 0 <= x2 < width and 0 <= y2 < height and grid[y2][x2] != wall and (x2, y2) not in seen:
+                queue.append(path + [(x2, y2)])
+                seen.add((x2, y2))
+
+
+def path_finder_1(maze):
+    """
+    A value of cell 1 means Source.
+    A value of cell 2 means Destination.
+    A value of cell 3 means Blank cell.
+    A value of cell 0 means Blank Wall.
+    """
+
+    if len(maze) <= 2:
+        return True
+
+    # Generate matrix
+    matrix_np = np.array(str2mat(maze))
+
+    # Presetting matrix
+    matrix_np = np.where(matrix_np == '.', 3, 0)
+    matrix_np[0][0] = 1  # Source
+    n = len(matrix_np[0])
+    m = len(matrix_np)
+    matrix_np[n - 1][m - 1] = 2  # Destination
+    """
+        # calling isPath method
+        if isPath(matrix_np):
+            return g_counter
+        else:
+            return False
+    """
+    global wall, clear, goal
+    wall, clear, goal = 0, 3, 2
+    global width, height
+    width, height = n, m
+    path = bfs_1(maze, (0, 0))
+    return path
+
+
+def path_finder_2(maze):
 
     if len(maze) <= 2:
         return True
@@ -134,29 +180,99 @@ def path_finder(maze):
     m = len(matrix_np)
     matrix_np[n - 1][m - 1] = 2  # Destination
 
-    # calling isPath method
-    if isPath(matrix_np):
-        return g_counter
+    # Origin cell to make the search
+    x0, y0 = (0, 0)
+    targetValue = 2
+
+    # This is the keypoint of the problem: find the positions of the cells containing the searched value
+    positions = np.where(matrix_np == targetValue)
+    x, y = positions
+
+    dx = abs(x0 - x)  # Horizontal distance
+    dy = abs(y0 - y)  # Vertical distance
+
+    # There are different criteria to compute distances
+    euclidean_distance = np.sqrt(dx ** 2 + dy ** 2)
+    manhattan_distance = abs(dx + dy)
+    my_distance = euclidean_distance  # Criterion choice
+    min_dist = min(my_distance)
+
+    min_pos = np.argmin(my_distance)  # This method will only return the first occurrence
+    min_coords = x[min_pos], y[min_pos]
+
+    if min_coords:
+        return sum(min_coords)
     else:
         return False
 
 
+def bfs_3(grid, start):
+    # BFS Preset
+    wall, clear, goal = "W", ".", "*"
+    grid_split = str2mat(grid)
+    grid_split[-1][-1] = '*'
+    grid_split_back = [''.join(idx for idx in sub) for sub in grid_split]
+    width, height = len(grid_split_back[0]), len(grid_split_back)
+    # Action
+    queue = collections.deque([[start]])
+    seen = set([start])
+    while queue:
+        path = queue.popleft()
+        x, y = path[-1]
+        if grid[y][x] == goal:
+            return path
+        for x2, y2 in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
+            if 0 <= x2 < width and 0 <= y2 < height and grid[y2][x2] != wall and (x2, y2) not in seen:
+                queue.append(path + [(x2, y2)])
+                seen.add((x2, y2))
+
+
+def path_finder_3(grid, start=(0, 0)):
+    # BFS Preset
+    wall, clear, goal = "W", ".", "*"
+    grid_split = str2mat(grid)
+    grid_split[-1][-1] = '*'
+    grid_split_back = [''.join(idx for idx in sub) for sub in grid_split]
+    width, height = len(grid_split_back[0]), len(grid_split_back)
+    flag = False
+    # Action
+    queue = collections.deque([[start]])
+    seen = set([start])
+    while queue:
+        path = queue.popleft()
+        x, y = path[-1]
+        if grid[y][x] == goal:
+            flag = True
+            return len(path)
+        for x2, y2 in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
+            if 0 <= x2 < width and 0 <= y2 < height and grid[y2][x2] != wall and (x2, y2) not in seen:
+                queue.append(path + [(x2, y2)])
+                seen.add((x2, y2))
+    if not flag:
+        return False
+
 
 # Driver
 
-m = "\n".join([
+d = "\n".join([
   "......",
   "......",
   "......",
   "......",
-  "......",
-  "......"])
-r = path_finder(m)
+  ".....W",
+  "....W."
+])
+r = path_finder_3(d)
 
 
 
 
 
+
+
+#wall, clear, goal = "#", ".", "*"
+#width, height = 10, 5
+#path = bfs(grid, (5, 2))
 
 
 
