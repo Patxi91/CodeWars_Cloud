@@ -141,3 +141,4 @@ def path_finder(maze):
     end = str(len(maze) - 1) + "-" + str(len(maze[-1]) - 1)
     dijkstras(end, maze)
     return distanceDict[end]
+
