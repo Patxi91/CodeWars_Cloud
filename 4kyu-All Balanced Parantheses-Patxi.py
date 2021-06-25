@@ -1,21 +1,3 @@
-from itertools import permutations
-
-def matched(str):
-    count = 0
-    for i in str:
-        if i == "(":
-            count += 1
-        elif i == ")":
-            count -= 1
-        if count < 0:
-            return False
-    return count == 0
-
-
-def balanced_parens1(n):
-    return list(set([''.join(p) for p in permutations(n * '()') if matched(p)]))
-
-
 def generateParentheses(openBr, closeBr, n, s=[]):
     global arr
     if closeBr == n:
@@ -31,9 +13,6 @@ def generateParentheses(openBr, closeBr, n, s=[]):
         generateParentheses(openBr + 1, closeBr, n, s)
         s.pop()
     return
-
-
-
 
 
 def balanced_parens(n):
