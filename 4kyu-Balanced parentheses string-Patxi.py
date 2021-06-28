@@ -1,3 +1,5 @@
+import itertools
+
 def generateParentheses(openBr, closeBr, n, s=[]):
     global arr
     if closeBr == n:
@@ -33,7 +35,11 @@ def balanced_parens2(n, k):
 
 
 def balanced_parens(n, k):
-    return list(set([p[:i] + "()" + p[i:] for p in balanced_parens(n - 1) for i in range(0, len(p))])) if n > 1 else ([""], ["()"])[n]
+    if k < 0:
+        return None
+    else:
+        gen = list(set([p[:i] + "()" + p[i:] for p in balanced_parens(n - 1) for i in range(0, len(p))])) if n > 1 else ([""], ["()"])[n]
+    return next(itertools.islice(gen, k, None))
 
 r = balanced_parens(200, 10e6)
 
