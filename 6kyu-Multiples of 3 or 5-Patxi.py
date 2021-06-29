@@ -1,2 +1,2 @@
 def solution(number):
-    return sum(list((i for i in  range(number) if any(i % div == 0 for div in [3, 5]))))
+    return sum([i for i in range(1, number) if i%3 == 0 or i%5 == 0])
