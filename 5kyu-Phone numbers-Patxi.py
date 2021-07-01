@@ -1,68 +1,62 @@
-class BinaryTree:
+class MyTree:
 
     def __init__(self, rootObj):
         self.key = rootObj
-        self.leftChild = None
-        self.rightChild = None
+        self.childs = None
 
-    def insertLeft(self, newNode):
-        # No Child --> insert
-        if self.leftChild == None:
-            self.leftChild = BinaryTree(newNode)
-        # Existing Child --> push it down the tree
+    def insert_child(self, newNode):
+        if self.childs:
+            self.childs.append(MyTree(newNode))
         else:
-            t = BinaryTree(newNode)
-            t.leftChild = self.leftChild
-            self.leftChild = t
+            self.childs = [MyTree(newNode)]
 
-    def insertRight(self, newNode):
-        if self.rightChild == None:
-            self.rightChild = BinaryTree(newNode)
-        else:
-            t = BinaryTree(newNode)
-            t.rightChild = self.rightChild
-            self.rightChild = t
+    def get_childs(self):
+        return self.childs
 
-    def getRightChild(self):
-        return self.rightChild
-
-    def getLeftChild(self):
-        return self.leftChild
-
-    def setRootVal(self, value):
+    def set_root_val(self, value):
         self.key = value
 
-    def getRootVal(self):
+    def get_root_val(self):
         return self.key
+
 
 def pre_count(tree):
     count = 0
     if tree:
         count += 1
-        pre_count(tree.getLeftChild())
-        pre_count(tree.getRightChild())
+        if tree.childs:
+            for child in tree.childs:
+                print(f'Reached Node:{tree.key}')
+                return count + pre_count(child)
+        else:
+            return 0
+
+
+def count_nodes(node):
+    # Handles empty node input
+    if not node:
+        return 0
+
+    count = 1
+    if node.childs:
+        for child in node.childs:
+            count += count_nodes(child)
+
     return count
 
+
 def phone_number(phone_numbers):
-    root = BinaryTree('')
-    currNode = root
+    root = MyTree('')
     for num in phone_numbers:
         currNode = root
         for digit in num:
-            if (currNode.getLeftChild() or currNode.getRightChild()) and digit != currNode.getLeftChild().getRootVal() and digit != currNode.getRightChild().getRootVal():
-                if currNode.getLeftChild().getRootVal() == None:
-                    currNode.insertLeft(digit)
-                    currNode = currNode.getLeftChild()
+            if currNode.get_childs():
+                if digit not in [child.get_root_val() for child in currNode.get_childs()]:
+                    currNode.insert_child(digit)
+                    currNode = currNode.childs[-1]
                 else:
-                    currNode.insertRight(digit)
-                    currNode = currNode.getRightChild()
+                    currNode = currNode.childs[[child.get_root_val() for child in currNode.get_childs()].index(digit)]
             else:
-                if digit == currNode.getLeftChild().getRootVal():
-                    currNode = currNode.getLeftChild()
-                else:
-                    currNode = currNode.getRightChild()
-    return pre_count(root)
-
-
-phone_numbers = ['01', '02', '03']
-r = phone_number(phone_numbers)
+                currNode.insert_child(digit)
+                currNode = currNode.childs[-1]
+    return count_nodes(root)-1
