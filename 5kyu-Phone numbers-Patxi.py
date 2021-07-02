@@ -36,7 +36,6 @@ def count_nodes(node):
     # Handles empty node input
     if not node:
         return 0
-
     count = 1
     if node.childs:
         for child in node.childs:
