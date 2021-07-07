@@ -38,3 +38,4 @@ class Solution:
 
 expression = '(((10)))'
 r = Solution().solve(expression)
+
