@@ -1,3 +1,4 @@
+# Pending solution
 from math import floor, trunc
 
 class Solution:

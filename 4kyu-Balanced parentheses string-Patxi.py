@@ -1,3 +1,4 @@
+# Pending solution
 import itertools
 
 def generateParentheses(openBr, closeBr, n, s=[]):
