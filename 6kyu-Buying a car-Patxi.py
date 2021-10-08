@@ -9,3 +9,4 @@ def nbMonths(old_car_price, new_car_price, saving_per_month, percent_loss_by_mon
         old_car_price -= old_car_price * percent_loss_by_month / 100
         savings += saving_per_month
     return [month - 1, round(savings + old_car_price - new_car_price)]
+
