@@ -11,3 +11,5 @@ def expansion(matrix, n):
         a[-1][-1] = np.trace(a) - a[-1][-1]  # Correct last diagonal element
 
     return a
+
+
