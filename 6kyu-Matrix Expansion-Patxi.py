@@ -9,7 +9,6 @@ def expansion(matrix, n):
         col = np.array([np.sum(a, axis=1)])  # Calculate column
         a = np.concatenate((a, col.T), axis=1)  # Concatenate column
         a[-1][-1] = np.trace(a) - a[-1][-1]  # Correct last diagonal element
+        n -= 1
 
-    return a
-
-
+    return a.tolist()
