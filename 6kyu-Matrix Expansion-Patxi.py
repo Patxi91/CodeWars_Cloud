@@ -12,3 +12,4 @@ def expansion(matrix, n):
         n -= 1
 
     return a.tolist()
+
