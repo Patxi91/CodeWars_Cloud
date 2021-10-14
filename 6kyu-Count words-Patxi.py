@@ -4,10 +4,6 @@ import re
 def word_count(s):
     r = ['a', 'the', 'on', 'at', 'upon', 'of', 'in', 'as']
     sol = s
-    sol = sol.replace("’", " ")
-    sol = sol.replace("'", " ")
-    sol = sol.replace(".", " ")
-    sol = sol.replace("-", " ")
 
     alphanumeric = [character if character.isalnum() else " " for character in sol]
     sol = "".join(alphanumeric)
