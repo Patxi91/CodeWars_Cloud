@@ -10,6 +10,7 @@ def word_count(s):
     sol = re.sub(r'[0-9]', ' ', sol)
     sol = sol.split()
     count = 0
+    sol = [x.lower() for x in sol]
     while count != len(sol):
         count = len(sol)
         [sol.remove(ele) for ele in r if ele in sol]
