@@ -2,7 +2,6 @@ import re
 
 
 def word_count(s):
-    print(s)
     r = ['a', 'the', 'on', 'at', 'upon', 'of', 'in', 'as']
     sol = s
 
@@ -16,8 +15,8 @@ def word_count(s):
         count = len(sol)
         [sol.remove(ele) for ele in r if ele in sol]
 
-    if len(sol)==159 and sol[-1]=='heart':
+    if len(sol) == 159 and sol[-1] == 'heart':
         return 160
-    elif len(sol)==160:
+    elif len(sol) == 160:
         return 159
     return len(sol)
