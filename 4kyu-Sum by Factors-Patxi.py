@@ -33,5 +33,3 @@ def sum_for_list(lst):
         sums.append([factors[i], msum])
     sums.sort(key=lambda factors:factors[0])
     return sums
-
-
