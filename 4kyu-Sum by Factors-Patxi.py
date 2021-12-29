@@ -20,7 +20,6 @@ def combine(arr1, arr2):
     return arr2
 
 def sum_for_list(lst):
-    #....
     factors = []
     sums = []
     for i in range(len(lst)):
