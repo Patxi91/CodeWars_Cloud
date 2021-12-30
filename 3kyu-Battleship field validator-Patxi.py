@@ -43,6 +43,6 @@ def validate_battlefield(field):
                         for cell in range(row, row - ship, -1):
                             field[cell][col] = 0
                 else:
-                    coll_count = 0
+                    cell_count = 0
 
     return SHIPS == COUNT
