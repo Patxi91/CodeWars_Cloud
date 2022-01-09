@@ -1,3 +1,9 @@
+'''
+it works after few attems I don`t know why it was not working in 1 of the test every time.
+I think this program works
+'''
+
+
 from math import factorial
 def listPosition(word):
     sol = 1
@@ -5,10 +11,8 @@ def listPosition(word):
     checked ={}
 
     for c in ref:
-        #print (ref.count(c))
         if ref.count(c)>1 and c not in checked:
             checked[c] = ref.count(c)
-    print(checked)
     
     for i,c in enumerate(word):
         pos = ref.index(c)
@@ -25,11 +29,28 @@ def listPosition(word):
             checked[c] -= 1
         #print(sol)
         ref=ref[:pos]+ref[pos+1:]
-        print(ref)
 
 
     return sol
   
 
 #print(listPosition('BAAA'))
-print(listPosition('BOOKKEEPER'))
+print(listPosition('MNSVJKPKBQUHLHWDSXPONWVWR'))
+#13555280727373304201470
+
+from collections import Counter
+
+def istPosition(word):
+    l, r, s = len(word), 1, 1
+    c = Counter()
+
+    for i in range(l):
+        x = word[(l - 1) - i]
+        c[x] += 1
+        for y in c:
+            if (y < x):
+                r += s * c[y] // c[x]
+        s = s * (i + 1) // c[x]
+    return r
+
+print(istPosition('MNSVJKPKBQUHLHWDSXPONWVWR'))
