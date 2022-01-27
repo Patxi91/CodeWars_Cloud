@@ -7,9 +7,9 @@ def add(num1, num2):
         num1, num2 = num2, num1
 
     for i in range(0, len(num1)):
-        if i > len(num2):
+        if i > len(num2) - 1:
             sums.append(num1[i])
         else:
-            sums.append(str(int(num1[i]) + int(num2[i]))
+            sums.append(str(int(num1[i]) + int(num2[i])))
 
-    return ''.join(sums[::-1])
+    return int(''.join(sums[::-1]))
