@@ -1,0 +1,1 @@
+palindrome=lambda n,s:s+s[-1]*(n-len(s)*2+1)+s[-2::-1]
