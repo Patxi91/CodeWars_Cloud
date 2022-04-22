@@ -1,38 +1,49 @@
-from preloaded import Node
-import operator
-import collections
-import itertools
+def serpentine_traversal(root):
+    global globvar
+    globvar = ''
 
-
-# Traverse and map keys to levels
-def inorder(tree, level, tree_vals=None):
-    if tree != None:
-        inorder(tree.left, level + 1, tree_vals)
-        tree_vals[tree.data] = level
-        inorder(tree.right, level + 1, tree_vals)
-    return tree_vals
-
-
-def serpentine_traversal(tree: Node) -> list:
-    if not tree:
+    if not root:
         return []
-    tree_vals = inorder(tree, 0, {})  # Start in root == level 0
-    order = []
-    o = 1
-    tmp = []
-    for i in range(tree_vals[max(tree_vals.items(), key=operator.itemgetter(1))[0]] + 1):
-        for j in tree_vals:
-            if tree_vals[j] == i:
-                tmp.append(j)
-        order.append(tmp[::o])
-        tmp = []
-        o *= -1
+    else:
+        globvar += str(root.data)
+    h = height(root)
+
+    ltr = False
+    for i in range(1, h + 1):
+        printGivenLevel(root, i, ltr)
+        ltr = not ltr
 
     try:
-        # if all([int(s) for s in list(itertools.chain.from_iterable(order)) if s.isdigit()]) and [int(s) for s in list(itertools.chain.from_iterable(order)) if s.isdigit()]:
-        #    return [int(s) for s in list(itertools.chain.from_iterable(order)) if s.isdigit()]
-        if all([int(s) for s in list(itertools.chain.from_iterable(order))]) and [int(s) for s in [int(s) for s in list(
-                itertools.chain.from_iterable(order))]:
-            return [int(s) for s in list(itertools.chain.from_iterable(order))]
+        return [int(s) for s in globvar.split()]
     except:
-        return list(itertools.chain.from_iterable(order))
+        return globvar.split()
+
+
+def printGivenLevel(root, level, ltr):
+    global globvar
+
+    if (root == None):
+        return []
+    if (level == 0):
+        globvar += ' ' + str(root.data)
+    elif (level > 0):
+
+        if (ltr):
+            printGivenLevel(root.left, level - 1, ltr)
+            printGivenLevel(root.right, level - 1, ltr)
+        else:
+            printGivenLevel(root.right, level - 1, ltr)
+            printGivenLevel(root.left, level - 1, ltr)
+
+
+def height(node):
+    if (node == None):
+        return 0
+    else:
+        lheight = height(node.left)
+        rheight = height(node.right)
+
+        if (lheight > rheight):
+            return (lheight + 1)
+        else:
+            return (rheight + 1)
