@@ -5,7 +5,7 @@ def check_hints(colors: list, hints: list) -> list:
     for c in list(itertools.permutations(colors, len(colors))):
         c = list(c)
         flag = False
-        for hint in hints:
+        for hint in list(set(hints)):
             if not flag:
                 hint_s = hint.split()
 
