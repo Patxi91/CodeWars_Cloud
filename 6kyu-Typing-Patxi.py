@@ -26,3 +26,4 @@ def solve(s):
             p += s[i]
     print(p)
     return p if p[-1] != "§" else "" if len(p) < 3 else p[:-2]
+
