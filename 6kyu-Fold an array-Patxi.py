@@ -1,9 +1,10 @@
 import math
 
 
-def fold_array(array:list , runs:int) -> list:
+def fold_array(array: list, runs: int) -> list:
     for i in range(runs):
-        if len(array) == 1: return array
+        if len(array) == 1:
+            return array
         ret = []
         start = 0
         end = len(array)-1
