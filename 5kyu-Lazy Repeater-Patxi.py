@@ -1,4 +1,5 @@
 class make_looper:
+
     def __init__(self, s):
         self.s = s
         self.i = -1
