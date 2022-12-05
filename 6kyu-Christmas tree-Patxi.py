@@ -1,6 +1,4 @@
 def christmas_tree(height):
-    if height == 1:
-        return '*'
     result = ''
     for r in range(1, height+1):
         for s in range(r, height):
