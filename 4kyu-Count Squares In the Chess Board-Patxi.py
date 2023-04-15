@@ -2,28 +2,15 @@ import numpy as np
 
 def count(chessBoard):
     r = dict()
-    cache = {}
+    n = len(chessBoard)
     arr = np.array(chessBoard)
-    dims = arr.shape[0]
-    for x in range(dims):
-        xmax = dims - x
-        for y in range(dims):
-            max = min(xmax, dims - y)
-            for i in range(2, max + 1):
-                if (x, y, i) in cache:
-                    biggest = cache[(x, y, i)]
-                else:
-                    sub_arr = arr[x:x+i, y:y+i]
-                    s = sub_arr.sum()
-                    if s == i*i:
-                        biggest = i
-                        cache[(x, y, i)] = i
-                    else:
-                        biggest = None
-                        cache[(x, y, i)] = None
-                if biggest is not None:
-                    if biggest not in r:
-                        r[biggest] = 1
-                    else:
-                        r[biggest] += 1
+    for k in range(2, n+1):
+        counts = np.zeros((n-k+1, n-k+1), dtype=int)
+        for i in range(n-k+1):
+            for j in range(n-k+1):
+                sub_arr = arr[i:i+k, j:j+k]
+                if np.all(sub_arr):
+                    counts[i,j] = 1
+        if np.any(counts):
+            r[k] = np.sum(counts)
     return r
