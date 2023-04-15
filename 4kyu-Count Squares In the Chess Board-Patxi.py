@@ -1,6 +1,6 @@
 import numpy as np
 
-def count(chessBoard):
+def count1(chessBoard):
     r = dict()
     n = len(chessBoard)
     arr = np.array(chessBoard)
@@ -13,4 +13,19 @@ def count(chessBoard):
                     counts[i,j] = 1
         if np.any(counts):
             r[k] = np.sum(counts)
+    return r
+
+
+def count2(chessBoard):
+    r = {}
+    n = len(chessBoard)
+    arr = np.array(chessBoard)
+    for k in range(2, n+1):
+        subarrays = np.lib.stride_tricks.as_strided(
+            arr,
+            shape=(n-k+1, n-k+1, k, k),
+            strides=arr.strides + arr.strides
+        )
+        if np.any(np.all(subarrays, axis=(2,3))):
+            r[k] = np.sum(np.all(subarrays, axis=(2,3)))
     return r
