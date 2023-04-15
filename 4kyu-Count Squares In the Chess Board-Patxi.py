@@ -17,23 +17,17 @@ def count1(chessBoard):
 
 
 def count2(chessBoard):
-    r = dict()
+    r = {}
     n = len(chessBoard)
-    arr = np.array(chessBoard)
-
+    arr = np.array(chessBoard, dtype=bool)
     for k in range(2, n+1):
-        window_shape = (k, k)
-        strides = arr.strides
-        view_shape = (n-k+1, n-k+1) + window_shape
-        view_strides = strides + strides
-
-        # create a view of the chessboard as a set of overlapping windows
-        window_view = np.lib.stride_tricks.as_strided(arr, view_shape, view_strides)
-
-        # count the number of squares of size k in each window
-        counts = np.count_nonzero(np.all(window_view, axis=(2, 3)))
-
-        if counts > 0:
-            r[k] = counts
-
+        sub_arr_shape = (n-k+1, n-k+1, k, k)
+        sub_arr_strides = arr.strides + arr.strides
+        sub_arr_view = np.lib.stride_tricks.as_strided(arr, shape=sub_arr_shape, strides=sub_arr_strides)
+        sub_arr_sum = np.sum(sub_arr_view, axis=(2, 3))
+        count = np.sum(sub_arr_sum == k**2)
+        if count:
+            r[k] = count
     return r
+
+
