@@ -106,6 +106,14 @@ def count5(chessBoard):
 # O(n^2)
 def count6(chessBoard):
     n = len(chessBoard)
+    arr = np.array(chessBoard)
+    count_dict = {k: np.count_nonzero(np.sum(np.lib.stride_tricks.as_strided(arr, shape=(n-k+1, n-k+1, k, k), strides=arr.strides + arr.strides), axis=(2, 3)) == k**2) for k in range(2, n+1)}
+    return {k:v for k,v in count_dict.items() if v}
+
+
+# O(n^2)
+def count7(chessBoard):
+    n = len(chessBoard)
     count_dict = {}
     arr = np.array(chessBoard)
     for k in range(2, n+1):
