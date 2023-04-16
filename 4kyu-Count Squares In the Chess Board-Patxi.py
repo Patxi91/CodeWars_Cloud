@@ -101,3 +101,20 @@ def count5(chessBoard):
                             counts[size] += 1
 
     return counts
+
+
+# O(n^2)
+def count6(chessBoard):
+    n = len(chessBoard)
+    count_dict = {}
+    arr = np.array(chessBoard)
+    for k in range(2, n+1):
+        k_squared = k**2
+        sub_arr_shape = (n-k+1, n-k+1, k, k)
+        sub_arr_strides = arr.strides + arr.strides
+        sub_arr_view = np.lib.stride_tricks.as_strided(arr, shape=sub_arr_shape, strides=sub_arr_strides)
+        sub_arr_sum = np.sum(sub_arr_view, axis=(2, 3))
+        count = np.count_nonzero(sub_arr_sum == k_squared)
+        if count:
+            count_dict[k] = count
+    return count_dict
