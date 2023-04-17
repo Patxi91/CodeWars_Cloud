@@ -66,7 +66,7 @@ def findWays(n):
 
 def balanced_parens3(n, k):
     stack = [('', n, 0)]
-    #result = []
+    result = []
     count = 0
     k_my = (findWays(2*n)-1)-k
 
@@ -96,6 +96,28 @@ r = balanced_parens3(66, 344)  # "()()()"
 
 
 
+def balanced_parens4(n, k):
+    def generate_parens(n, left, right, current):
+        if left == right == n:
+            # we've generated a valid parentheses sequence
+            return [current]
+
+        result = []
+        if left < n:
+            # add a left parenthesis
+            result += generate_parens(n, left+1, right, current+"(")
+
+        if right < left:
+            # add a right parenthesis
+            result += generate_parens(n, left, right+1, current+")")
+
+        return result
+
+    # generate all valid parentheses sequences of length 2*n
+    all_parens = generate_parens(n, 0, 0, "")
+
+    # return the k-th sequence, or None if k is out of bounds
+    return all_parens[k] if 0 <= k < len(all_parens) else None
 
 
 
