@@ -273,3 +273,40 @@ def balanced_parens5(n, k):
     return ''.join(result)
 
 
+def binomial_coefficient(n, k):
+    """Compute the binomial coefficient C(n, k)"""
+    if k > n:
+        return 0
+    result = 1
+    for i in range(k):
+        result *= (n - i)
+        result //= (i + 1)
+    return result
+
+
+def balanced_parens6(n, k):
+    def generate(result, num_open, num_close):
+        nonlocal k
+        if num_open == n and num_close == n:
+            if k == 0:
+                return result
+            k -= 1
+            return None
+        if num_open < n:
+            num_sequences = binomial_coefficient(2*n - num_open - num_close - 2, n - num_open - 1)
+            if k < num_sequences:
+                res = generate(result+'(', num_open+1, num_close)
+                if res is not None:
+                    return res
+            else:
+                k -= num_sequences
+        if num_close < num_open:
+            res = generate(result+')', num_open, num_close+1)
+            if res is not None:
+                return res
+        return None
+
+    if k < 0 or k >= binomial_coefficient(2*n, n):
+        return None
+
+    return generate('', 0, 0)
