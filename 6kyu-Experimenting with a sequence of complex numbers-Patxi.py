@@ -1,5 +1,6 @@
 import cmath
 
+
 def f(z, eps):
     n = 1
     prev_sum = 0
