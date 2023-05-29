@@ -7,3 +7,4 @@ def transpose(matrix):
     transpose_matrix = [[matrix[j][i] for j in range(rows)] for i in range(columns)]
 
     return transpose_matrix
+
