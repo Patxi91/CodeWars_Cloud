@@ -11,4 +11,7 @@ def growing_plant(up_speed, down_speed, desired_height):
 
         height -= down_speed
 
-    return days
+    if desired_height == 0 and days == 0:
+        return 1
+    else:
+        return days
