@@ -13,4 +13,3 @@ def rad_ladies(name):
             filtered_name += char.upper()
 
     return filtered_name
-
