@@ -129,7 +129,7 @@ def count7(chessBoard):
 
 
 # O(n^2)
-def count(chessBoard):
+def count8(chessBoard):
     n = len(chessBoard)
     count_dict = {}
 
