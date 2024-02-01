@@ -1,0 +1,1 @@
+def cube_matrix_sum(m): return sum(sum(sum(m, [])))
