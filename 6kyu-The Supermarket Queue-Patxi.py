@@ -25,3 +25,4 @@ def queue_time(customers, n):
             break
         time_count += 1
     return time_count
+
