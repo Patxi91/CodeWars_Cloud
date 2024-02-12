@@ -43,3 +43,4 @@ def line_up(hints: list) -> list:
                         r.insert(r.index(color2), color1)  # color2 in r
 
     return r
+
