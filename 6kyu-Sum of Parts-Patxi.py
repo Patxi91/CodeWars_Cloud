@@ -6,3 +6,4 @@ def parts_sums(ls):
     if sum(sum_ls) == 0:
         return [0]
     return sum_ls
+
