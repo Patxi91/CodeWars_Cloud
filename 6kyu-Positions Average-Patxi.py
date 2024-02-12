@@ -15,3 +15,4 @@ def pos_average(s):
                     continue
                     
     return float((count)/((num_ss*(num_ss-1)/2)*size_ss))*100
+
