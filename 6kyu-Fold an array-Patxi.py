@@ -16,3 +16,4 @@ def fold_array(array: list, runs: int) -> list:
             ret.append(array[math.floor(len(array) / 2)])
         array = ret
     return array
+
