@@ -1,21 +1,14 @@
 def dec_2_fact_string(nb):
-    print(nb)
     c = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    f = 1
+    f = [1]
     n = 2
-    while f < nb:
-        if n * f < nb:
-            f *= n
-            n += 1
-        else:
-            n -= 1
-            break
+    while f[-1] < nb:
+        f.append(f[-1] * n)
+        n += 1
     r = ''
-    while n > 0:
-        r += c[round(nb // f)]
-        nb %= f
-        f /= n
-        n -= 1
+    for i in range(len(f)-2, -1, -1):
+        r += c[nb // f[i]]
+        nb %= f[i]
     return r + '0'
 
 
