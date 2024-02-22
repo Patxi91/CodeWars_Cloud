@@ -1,26 +1,23 @@
-def radix_tree(*words):
-    def insert(word):
-        node = tree
-        for char in word:
-            if char not in node:
-                node[char] = {}
-            node = node[char]
-        return tree
+def radix_tree(*input_words):
+    unique_words = set(input_words)
+    root_node = {}
 
-    def compress(node):
-        while len(node) == 1 and list(node.values())[0]:
-            key, value = list(node.items())[0]
-            del node[key]
-            new_key = key + list(value.keys())[0]
-            node[new_key] = value[list(value.keys())[0]]
-            compress(node)
-        for sub_node in node.values():
-            compress(sub_node)
-        return node
+    def insert_word(word, node):
+        if word[0] not in node:
+            node[word[0]] = {}
+        if word[1:]:
+            insert_word(word[1:], node[word[0]])
 
-    tree = {}
-    for word in words:
-        if word:  # Skip empty strings
-            tree = insert(word)
-    tree = compress(tree)
-    return tree
+    def compress_tree(node, current=''):
+        for key, value in node.items():
+            compress_tree(value, current + key)
+        for key, value in list(node.items()):
+            if len(value) == 1 and (current + key) not in unique_words:
+                node[key + list(value.keys())[0]] = list(value.values())[0]
+                del node[key]
+
+    for word in unique_words:
+        if word:
+            insert_word(word, root_node)
+    compress_tree(root_node)
+    return root_node
